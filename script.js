@@ -28,6 +28,31 @@ const transaction = {
 
         app.reload()
     },
+    register() {
+        modal.open()
+        form.btnSave.onclick = form.submit
+    },
+    alter(newTransaction, index) {
+        transaction.all[index] = newTransaction
+        app.reload()
+    },
+    edit(index) {
+        modal.open()
+        const current_transaction = transaction.all[index]
+        form.setValues(current_transaction)
+        form.btnSave.onclick = event => {
+            event.preventDefault()
+            try {
+                form.validateFields()
+                const newTransaction = form.formatValues()
+                transaction.alter(newTransaction, index)
+                form.clearFields()
+                modal.close()
+            } catch (error) {
+                alert(error.message)
+            }
+        }
+    },
     incomes() {
         return transaction.all.reduce((acc, {amount}) => {
             return amount > 0 ? acc + amount : acc
@@ -58,6 +83,7 @@ const DOM = {
             <td class="${cssClass}">${Util.formatCurrency(amount)}</td>
             <td class="date">${date}</td>
             <td>
+                <img onclick="transaction.edit(${index})" src="assets/edit-solid.svg" alt="Editar transação">
                 <img onclick="transaction.remove(${index})" src="assets/minus.svg" alt="Remover transação">
             </td>
         `
@@ -103,12 +129,20 @@ const form = {
     amount: document.getElementById("amount"),
     date: document.getElementById("date"),
 
+    btnSave: document.getElementById("save"),
+
     getValues() {
         return {
             description: form.description.value,
             amount: form.amount.value,
             date: form.date.value
         }
+    },
+    setValues({description, amount, date}) {
+        form.description.value = description
+        form.amount.value = amount / 100
+        form.date.value = date.split("/").reverse().join("-")
+        
     },
     formatValues() {
         let {description, amount, date} = form.getValues()
@@ -163,9 +197,7 @@ const app = {
     }
 }
 
-document.querySelector(".button.new").addEventListener("click", modal.open)
+document.querySelector(".button.new").addEventListener("click", transaction.register)
 document.querySelector(".button.cancel").addEventListener("click", form.cancel)
-document.querySelector(".button.cancel + button").addEventListener("click", form.submit)
-
 
 app.init()
