@@ -1,0 +1,24 @@
+{
+  "name": "maratona-discover",
+  "version": "1.0.0",
+  "description": "Projeto criado no evento Maratona Discover, promovido pela Rocketseat. Nessa aplicação é possível cadastrar despesas e receitas, adicionando uma descrição e quantia e o Sistema calcula o total de despesas, o total de receitas e o saldo atual.",
+  "main": "script.js",
+  "dependencies": {
+    "izitoast": "1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tiago0Br/maratona-discover.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tiago0Br/maratona-discover/issues"
+  },
+  "homepage": "https://github.com/Tiago0Br/maratona-discover#readme"
+}
