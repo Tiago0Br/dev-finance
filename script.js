@@ -4,6 +4,13 @@ const modal = {
     },
     close() {
         document.querySelector(".modal-overlay.active").classList.remove("active")
+    },
+    warning(error) {
+        iziToast.error({
+            title: 'Aviso!',
+            message: error.message,
+            position: "center"
+        });
     }
 }
 
@@ -28,6 +35,25 @@ const transaction = {
 
         app.reload()
     },
+    confirm(index) {
+        iziToast.warning({
+            title: 'Tem certeza disso?',
+            message: 'Você deseja exluir essa transação?',
+            position: "center",
+            buttons: [
+                [`<button onclick="transaction.remove(${index})"><b>Sim</b></button>`, function (instance, toast) {
+         
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+         
+                }, true],
+                ['<button>Não</button>', function (instance, toast) {
+         
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+         
+                }],
+            ],
+        });
+    },
     register() {
         modal.open()
         form.btnSave.onclick = form.submit
@@ -49,7 +75,7 @@ const transaction = {
                 form.clearFields()
                 modal.close()
             } catch (error) {
-                alert(error.message)
+                modal.warning(error)
             }
         }
     },
@@ -84,7 +110,7 @@ const DOM = {
             <td class="date">${date}</td>
             <td>
                 <img onclick="transaction.edit(${index})" src="assets/edit-solid.svg" alt="Editar transação">
-                <img onclick="transaction.remove(${index})" src="assets/minus.svg" alt="Remover transação">
+                <img onclick="transaction.confirm(${index})" src="assets/minus.svg" alt="Remover transação">
             </td>
         `
 
@@ -158,7 +184,7 @@ const form = {
     validateFields() {
         const {description, amount, date} = form.getValues()
         if (description.trim() === "" || amount.trim() === "" || date.trim() === "") {
-            throw new Error("Por favor preencha todos os campos!")
+            throw new Error("Por favor, preencha todos os campos!")
         }
     },
     clearFields() {
@@ -175,7 +201,7 @@ const form = {
             form.clearFields()
             modal.close()
         } catch (error) {
-            alert(error.message)
+            modal.warning(error)
         }
 
     },
