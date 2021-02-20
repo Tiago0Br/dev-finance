@@ -1,3 +1,6 @@
+flatpickr(".flatpickr", {dateFormat: "d-m-Y"});
+new Tablesort(document.getElementById('data-table'));
+
 const modal = {
     open() {
         document.querySelector(".modal-overlay").classList.add("active")
@@ -109,8 +112,10 @@ const DOM = {
             <td class="${cssClass}">${Util.formatCurrency(amount)}</td>
             <td class="date">${date}</td>
             <td>
-                <img onclick="transaction.edit(${index})" src="assets/edit-solid.svg" alt="Editar transação">
-                <img onclick="transaction.confirm(${index})" src="assets/minus.svg" alt="Remover transação">
+                <img onclick="transaction.edit(${index})" class="btnAction" src="assets/edit-solid.svg"
+                 alt="Editar transação">
+                <img onclick="transaction.confirm(${index})" class="btnAction" src="assets/minus.svg"
+                 alt="Remover transação">
             </td>
         `
 
@@ -134,7 +139,7 @@ const Util = {
         return Math.round(value)
     },
     formatDate(date) {
-        return date.split("-").reverse().join("/")
+        return date.split("-").join("/")
     },
     formatCurrency(value) {
         const signal = value < 0 ? "-" : ""
@@ -167,7 +172,7 @@ const form = {
     setValues({description, amount, date}) {
         form.description.value = description
         form.amount.value = amount / 100
-        form.date.value = date.split("/").reverse().join("-")
+        form.date.value = date.split("/").join("-")
         
     },
     formatValues() {
