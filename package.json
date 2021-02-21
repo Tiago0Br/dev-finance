@@ -1,7 +1,5 @@
 {
   "name": "maratona-discover",
-  "version": "1.0.0",
-  "description": "Projeto criado no evento Maratona Discover, promovido pela Rocketseat. Nessa aplicação é possível cadastrar despesas e receitas, adicionando uma descrição e quantia e o Sistema calcula o total de despesas, o total de receitas e o saldo atual.",
   "dependencies": {
     "flatpickr": "^4.6.9",
     "izitoast": "1.4.0",
@@ -13,7 +11,7 @@
     "webpack-cli": "4.5.0"
   },
   "scripts": {
-    "build": "npm install && webpack"
+    "build": "npx webpack"
   },
   "repository": {
     "type": "git",
