@@ -13,7 +13,7 @@
     "webpack-cli": "4.5.0"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "npm install && webpack"
   },
   "repository": {
     "type": "git",
