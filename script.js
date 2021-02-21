@@ -1,19 +1,9 @@
-flatpickr(".flatpickr", {dateFormat: "d-m-Y"});
-new Tablesort(document.getElementById('data-table'));
-
 const modal = {
     open() {
         document.querySelector(".modal-overlay").classList.add("active")
     },
     close() {
         document.querySelector(".modal-overlay.active").classList.remove("active")
-    },
-    warning(error) {
-        iziToast.error({
-            title: 'Aviso!',
-            message: error.message,
-            position: "center"
-        });
     }
 }
 
@@ -34,28 +24,15 @@ const transaction = {
         app.reload()
     },
     remove(index) {
-        transaction.all.splice(index, 1)
+        let confirmation = window.confirm("Você deseja excluir essa transação?")
+        if (confirmation) {
+            transaction.all.splice(index, 1)
+            app.reload()
+            setTimeout(() => {
+                window.alert("Registro excluído com sucesso!")
+            }, 200)
+        }
 
-        app.reload()
-    },
-    confirm(index) {
-        iziToast.warning({
-            title: 'Tem certeza disso?',
-            message: 'Você deseja exluir essa transação?',
-            position: "center",
-            buttons: [
-                [`<button onclick="transaction.remove(${index})"><b>Sim</b></button>`, function (instance, toast) {
-         
-                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-         
-                }, true],
-                ['<button>Não</button>', function (instance, toast) {
-         
-                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-         
-                }],
-            ],
-        });
     },
     register() {
         modal.open()
@@ -77,8 +54,11 @@ const transaction = {
                 transaction.alter(newTransaction, index)
                 form.clearFields()
                 modal.close()
+                setTimeout(() => {
+                    window.alert("Alteração realizada com sucesso!")
+                }, 200)
             } catch (error) {
-                modal.warning(error)
+                alert(error.message)
             }
         }
     },
@@ -112,10 +92,8 @@ const DOM = {
             <td class="${cssClass}">${Util.formatCurrency(amount)}</td>
             <td class="date">${date}</td>
             <td>
-                <img onclick="transaction.edit(${index})" class="btnAction" src="assets/edit-solid.svg"
-                 alt="Editar transação">
-                <img onclick="transaction.confirm(${index})" class="btnAction" src="assets/minus.svg"
-                 alt="Remover transação">
+                <img onclick="transaction.edit(${index})" src="assets/edit-solid.svg" alt="Editar transação">
+                <img onclick="transaction.remove(${index})" src="assets/minus.svg" alt="Remover transação">
             </td>
         `
 
@@ -139,7 +117,7 @@ const Util = {
         return Math.round(value)
     },
     formatDate(date) {
-        return date.split("-").join("/")
+        return date.split("-").reverse().join("/")
     },
     formatCurrency(value) {
         const signal = value < 0 ? "-" : ""
@@ -172,7 +150,7 @@ const form = {
     setValues({description, amount, date}) {
         form.description.value = description
         form.amount.value = amount / 100
-        form.date.value = date.split("/").join("-")
+        form.date.value = date.split("/").reverse().join("-")
         
     },
     formatValues() {
@@ -189,7 +167,7 @@ const form = {
     validateFields() {
         const {description, amount, date} = form.getValues()
         if (description.trim() === "" || amount.trim() === "" || date.trim() === "") {
-            throw new Error("Por favor, preencha todos os campos!")
+            throw new Error("Por favor preencha todos os campos!")
         }
     },
     clearFields() {
@@ -205,8 +183,11 @@ const form = {
             transaction.add(newTransaction)
             form.clearFields()
             modal.close()
+            setTimeout(() => {
+                window.alert("Registro salvo com sucesso!")
+            }, 200)
         } catch (error) {
-            modal.warning(error)
+            alert(error.message)
         }
 
     },
