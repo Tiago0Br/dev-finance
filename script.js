@@ -28,9 +28,6 @@ const transaction = {
         if (confirmation) {
             transaction.all.splice(index, 1)
             app.reload()
-            setTimeout(() => {
-                window.alert("Registro excluído com sucesso!")
-            }, 200)
         }
 
     },
@@ -54,9 +51,6 @@ const transaction = {
                 transaction.alter(newTransaction, index)
                 form.clearFields()
                 modal.close()
-                setTimeout(() => {
-                    window.alert("Alteração realizada com sucesso!")
-                }, 200)
             } catch (error) {
                 alert(error.message)
             }
@@ -183,9 +177,6 @@ const form = {
             transaction.add(newTransaction)
             form.clearFields()
             modal.close()
-            setTimeout(() => {
-                window.alert("Registro salvo com sucesso!")
-            }, 200)
         } catch (error) {
             alert(error.message)
         }
