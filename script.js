@@ -21,14 +21,37 @@ const transaction = {
     all: storage.get(),
     add(newTransaction) {
         transaction.all.push(newTransaction)
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Transação salva com sucesso!',
+            showConfirmButton: false,
+            timer: 1500
+        })
         app.reload()
     },
     remove(index) {
-        let confirmation = window.confirm("Você deseja excluir essa transação?")
-        if (confirmation) {
-            transaction.all.splice(index, 1)
-            app.reload()
-        }
+        
+        Swal.fire({
+            title: 'Excluir transação',
+            text: "Tem certeza disso?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                transaction.all.splice(index, 1)
+                Swal.fire(
+                    'Deletado',
+                    'Sua transação foi excluída com sucesso!',
+                    'success'
+                )
+                app.reload()
+            }
+          })
 
     },
     register() {
@@ -51,8 +74,19 @@ const transaction = {
                 transaction.alter(newTransaction, index)
                 form.clearFields()
                 modal.close()
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Edição realizada com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             } catch (error) {
-                alert(error.message)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: error.message
+                  })
             }
         }
     },
@@ -178,9 +212,12 @@ const form = {
             form.clearFields()
             modal.close()
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: error.message
+            })
         }
-
     },
     cancel() {
         modal.close()
