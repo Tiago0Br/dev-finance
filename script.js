@@ -1,3 +1,5 @@
+flatpickr(".flatpickr", {"locale": "pt", dateFormat: "d-m-Y"});
+
 const modal = {
     open() {
         document.querySelector(".modal-overlay").classList.add("active")
@@ -120,8 +122,10 @@ const DOM = {
             <td class="${cssClass}">${Util.formatCurrency(amount)}</td>
             <td class="date">${date}</td>
             <td>
-                <img onclick="transaction.edit(${index})" src="assets/edit-solid.svg" alt="Editar transação">
-                <img onclick="transaction.remove(${index})" src="assets/minus.svg" alt="Remover transação">
+                <img onclick="transaction.edit(${index})" class="btnAction" src="assets/edit-solid.svg"
+                 alt="Editar transação">
+                <img onclick="transaction.remove(${index})" class="btnAction" src="assets/minus.svg"
+                 alt="Remover transação">
             </td>
         `
 
@@ -145,7 +149,7 @@ const Util = {
         return Math.round(value)
     },
     formatDate(date) {
-        return date.split("-").reverse().join("/")
+        return date.split("-").join("/")
     },
     formatCurrency(value) {
         const signal = value < 0 ? "-" : ""
@@ -178,7 +182,7 @@ const form = {
     setValues({description, amount, date}) {
         form.description.value = description
         form.amount.value = amount / 100
-        form.date.value = date.split("/").reverse().join("-")
+        form.date.value = date.split("/").join("-")
         
     },
     formatValues() {
@@ -194,8 +198,22 @@ const form = {
     },
     validateFields() {
         const {description, amount, date} = form.getValues()
-        if (description.trim() === "" || amount.trim() === "" || date.trim() === "") {
-            throw new Error("Por favor preencha todos os campos!")
+        const emptyFields = []
+        let isInvalid = false
+        if (description.trim() === "") {
+            emptyFields.push("Descrição")
+            isInvalid = true
+        }
+        if (amount.trim() === "") {
+            emptyFields.push("Valor")
+            isInvalid = true
+        }
+        if (date.trim() === "") {
+            emptyFields.push("Data")
+            isInvalid = true
+        }
+        if (isInvalid) {
+            throw new Error(`Por favor, preencha o(s) campo(s): ${emptyFields.join(", ")}.`)
         }
     },
     clearFields() {
