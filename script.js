@@ -39,10 +39,10 @@ const transaction = {
             text: "Tem certeza disso?",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#49aa26',
+            cancelButtonColor: '#fff',
             confirmButtonText: 'Sim!',
-            cancelButtonText: 'Cancelar'
+            cancelButtonText: '<p class="cancel">Cancelar</p>'
           }).then((result) => {
             if (result.isConfirmed) {
                 transaction.all.splice(index, 1)

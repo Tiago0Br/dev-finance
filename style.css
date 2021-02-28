@@ -93,8 +93,21 @@ button:hover {
     opacity: 0.6;
 }
 
-.button.cancel:hover {
+button.swal2-confirm {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+button.swal2-cancel {
+    color: var(--red) !important;
+    border: 2px var(--red) solid !important;
+    border-radius: 0.25rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    opacity: 0.6;
+}
+
+.button.cancel:hover, button.swal2-cancel:hover {
     opacity: 1;
+    background-image: none !important;
 }
 
 header {
@@ -203,7 +216,12 @@ td.expense {
     color: #e92929;
 }
 
-.btnAction:hover {
+tr td:last-child {
+    display: flex;
+}
+
+.btnAction {
+    display: inline;
     cursor: pointer;
 }
 
@@ -224,9 +242,11 @@ td.expense {
     opacity: 0;
     visibility: hidden;
     z-index: 1;
+    transition: .3s;
 }
 
 .modal-overlay.active {
+    transition: .3s;
     opacity: 1;
     visibility: visible;
 }
