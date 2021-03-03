@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="tablesort.css">
 </head>
 <body>
     <header>
@@ -49,7 +50,7 @@
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
-                        <th></th>
+                        <th data-sort-method='none' class="no-sort"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,6 +95,9 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+    <script src="js/tablesort.min.js"></script>
+    <script src="js/tablesort.number.min.js"></script>
+    <script src="js/tablesort.date.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

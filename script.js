@@ -1,5 +1,7 @@
 flatpickr(".flatpickr", {"locale": "pt", dateFormat: "d-m-Y"});
-
+new Tablesort(document.getElementById('data-table'), {
+    descending: false
+});
 const modal = {
     open() {
         document.querySelector(".modal-overlay").classList.add("active")
