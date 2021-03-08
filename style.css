@@ -295,6 +295,41 @@ input {
     width: 48%;
 }
 
+.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+.file-input label {
+  display: block;
+  position: relative;
+  width: 48%;
+  height: 50px;
+  border-radius: 0.2rem;
+  background-color: #2778c4;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+}
+
+.file-input label:hover {
+    background-color: #3f92e0;
+}
+
+.file-name {
+    position: absolute;
+    left: 280px;
+    font-size: 0.85rem;
+    color: #555;
+    width: 100%;
+}
+
+
 /* Footer */
 footer {
     text-align: center;
