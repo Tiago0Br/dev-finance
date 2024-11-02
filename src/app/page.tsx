@@ -33,18 +33,19 @@ export default function Home() {
 
         <section id="transaction">
           <h2 className="sr-only">Transações</h2>
-          <a href="#" className="button new">+ Nova transação!</a>
+          <a href="#" className="button new">
+            + Nova transação!
+          </a>
           <table id="data-table">
             <thead>
               <tr>
                 <th>Descrição</th>
-                <th data-sort-method='number'>Valor</th>
+                <th data-sort-method="number">Valor</th>
                 <th>Data</th>
-                <th data-sort-method='none' className="no-sort"></th>
+                <th data-sort-method="none" className="no-sort"></th>
               </tr>
             </thead>
-            <tbody>
-            </tbody>
+            <tbody></tbody>
           </table>
         </section>
       </main>
@@ -55,25 +56,54 @@ export default function Home() {
             <h2>Nova Transação</h2>
             <form action="">
               <div className="input-group">
-                <label htmlFor="description" className="sr-only">Descrição</label>
-                <input type="text" id="description" name="description" placeholder="Descrição" />
+                <label htmlFor="description" className="sr-only">
+                  Descrição
+                </label>
+                <input
+                  type="text"
+                  id="description"
+                  name="description"
+                  placeholder="Descrição"
+                />
               </div>
               <div className="input-group">
-                <label htmlFor="amount" className="sr-only">Valor</label>
-                <input type="number" id="amount" name="amount" placeholder="0,00" step="0.01" />
-                <small className="help">Use o sinal - (negativo) para despesas e ,
-                  (vírgula) para casas decimais
+                <label htmlFor="amount" className="sr-only">
+                  Valor
+                </label>
+                <input
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  placeholder="0,00"
+                  step="0.01"
+                />
+                <small className="help">
+                  Use o sinal - (negativo) para despesas e , (vírgula) para
+                  casas decimais
                 </small>
               </div>
 
               <div className="input-group">
-                <label htmlFor="date" className="sr-only">Data</label>
-                <input type="date" id="date" className="flatpickr" name="date" placeholder="Data" />
+                <label htmlFor="date" className="sr-only">
+                  Data
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  className="flatpickr"
+                  name="date"
+                  placeholder="Data"
+                />
               </div>
 
               <div className="input-group">
                 <div className="file-input">
-                  <input type="file" id="file" className="file" accept="image/*, .pdf" />
+                  <input
+                    type="file"
+                    id="file"
+                    className="file"
+                    accept="image/*, .pdf"
+                  />
                   <label htmlFor="file">
                     Selecionar Comprovante
                     <p className="file-name">Nenhum selecionado</p>
@@ -81,16 +111,19 @@ export default function Home() {
                 </div>
               </div>
 
-
               <div className="input-group actions">
-                <a href="#" className="button cancel">Cancelar</a>
+                <a href="#" className="button cancel">
+                  Cancelar
+                </a>
                 <button id="save">Salvar</button>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <footer><p>dev.finance$</p></footer>
+      <footer>
+        <p>dev.finance$</p>
+      </footer>
     </>
-  );
+  )
 }
