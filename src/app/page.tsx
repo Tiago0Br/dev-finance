@@ -1,3 +1,11 @@
+import { Header } from '@/components/header'
+import { Summary } from '@/components/summary'
+
 export default function Home() {
-  return <h1 className="text-3xl font-bold text-red-300 underline">Hello world!</h1>
+  return (
+    <main>
+      <Header />
+      <Summary />
+    </main>
+  )
 }
