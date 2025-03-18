@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+@theme {
+  --color-gray-100: #E1E1E6;
+  --color-gray-300: #C4C4CC;
+  --color-gray-400: #8D8D99;
+  --color-gray-500: #7C7C8A;
+  --color-gray-600: #323238;
+  --color-gray-700: #29292E;
+  --color-gray-800: #202024;
+  --color-gray-900: #121214;
+  --color-green-300: #00B37E;
+  --color-green-500: #00875F;
+  --color-green-700: #015F43;
+  --color-red-300: #F75A68;
+  --color-red-500: #AB222E;
+  --color-red-700: #7A1921;
+
+  --font-roboto: "Roboto", sans-serif;
+}
